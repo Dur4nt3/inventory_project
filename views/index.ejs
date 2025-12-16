@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/root.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <title>Home</title>
+</head>
+<body>
+    <h1 class="home-heading">Inventory</h1>
+    <% if (locals.categories.length !== 0) { %>
+        <div class="all-categories">
+            <% for (const category of categories) { %>
+                <div class="category-cont">
+                    <h2 class="category-name"><%= category.name %></h2>
+                    <div class="category-actions">
+                        <a href=<%= `/category/${category["category_id"]}/edit` %>>
+                            <img src="/icons/edit.svg" alt="Edit category">
+                        </a>
+                        
+                        <a href=<%= `/category/${category["category_id"]}/` %>>
+                            <img src="/icons/view.svg" alt="View category">
+                        </a>
+                        
+                        <a href=<%= `/category/${category["category_id"]}/delete` %>>
+                            <img src="/icons/delete.svg" alt="Delete category">
+                        </a>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    <% } else { %>
+        <div class="no-categories-notice">
+            <img src="/icons/brackets.svg">
+            <h2>No categories found...</h2>
+            <p>Use the "+" button below to add a new category.</p>
+        </div>
+    <% } %>
+
+    <a href="/createCategory" class="create-new-category">
+        <img src="/icons/plus.svg" alt="Create a new category">
+    </a>
+</body>
+</html>

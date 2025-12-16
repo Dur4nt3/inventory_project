@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/root.css">
+    <title>
+        Create Item
+    </title>
+</head>
+<body>
+    <h1 class="item-heading">
+        Create Item
+    </h1>
+
+    <%- include("partials/errors.ejs", { errors: locals.errors }) %>
+    
+    <%- include("partials/actionNotice.ejs", { target: category, action: 'Creating Item in Category' }) %>
+
+    <form action=<%= `/category/${categoryId}/createItem` %> method="POST" class="create-item-form">
+        <div class="form-row">
+            <label for="item">
+                Item Name:
+            </label>
+            <input type="text" name="name" id="item">
+        </div>
+
+        <button type="submit">Create Item</button>
+    </form>
+
+    <div class="footer-buttons-cont">
+        <a href=<%= `/category/${categoryId}` %> class='back-to-category'>
+            <img src="/icons/back.svg" alt="Go back to the category">
+        </a>
+        <a href="/" class="home-button">
+            <img src="/icons/home.svg" alt="Go back to the homepage">
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<% if (locals.errors) {%>
+<div class="errors-cont">
+    <h2>Submission Error:</h2>
+    <ul>
+        <% errors.forEach(function(error) { %>
+        <li><%= error.msg %></li>
+        <% }); %>
+    </ul>
+</div>
+<% } %>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/root.css">
+    <title>
+        <% if (locals.title) { %>
+            <%= title %>
+        <% } else { %>
+            View Category
+        <% } %>
+    </title>
+</head>
+<body>
+    <h1 class="category-heading">
+        <% if (locals.title) { %>
+            <%= title %>
+        <% } else { %>
+            Viewing Category
+        <% } %>
+    </h1>
+
+    <% if (locals.items.length !== 0) { %>
+        <div class="all-items">
+            <% for (const item of items) { %>
+                <div class="item-cont">
+                    <h2 class="item-name"><%= item.name %></h2>
+                    <div class="item-actions">
+                        <a href=<%= `/category/${categoryId}/editItem/${item["item_id"]}` %>>
+                            <img src="/icons/edit.svg" alt="Edit item">
+                        </a>
+
+                        <a href=<%= `/category/${categoryId}/deleteItem/${item["item_id"]}` %>>
+                            <img src="/icons/delete.svg" alt="Delete item">
+                        </a>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    <% } else { %>
+        <div class="no-items-notice">
+            <img src="/icons/brackets.svg">
+            <h2>No items found...</h2>
+            <p>Use the "+" button below to add a new item.</p>
+        </div>
+    <% } %>
+
+    <div class="footer-buttons-cont">
+        <a href=<%= `/category/${categoryId}/createItem` %> class='create-new-item'>
+            <img src="/icons/plus.svg" alt="Create a new item">
+        </a>
+        <a href="/" class="home-button">
+            <img src="/icons/home.svg" alt="Go back to the homepage">
+        </a>
+    </div>
+</body>
+</html>

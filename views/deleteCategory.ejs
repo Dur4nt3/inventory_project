@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/root.css">
+    <title>
+        <% if (locals.category) { %>
+            Delete <%= category %> Category
+        <% } else { %>
+            Delete Category
+        <% } %>
+    </title>
+</head>
+<body>
+    <h1 class="category-heading">
+        Delete Category
+    </h1>
+
+    <%- include("partials/errors.ejs", { errors: locals.errors }) %>
+
+    <form action=<%= `/category/${categoryId}/delete` %> method="POST" class="delete-category-form">
+        <div class="form-row">
+            <label for="category">
+                Category Name:
+            </label>
+            <input disabled type="text" name="name" id="category" value="<%= category %>">
+        </div>
+
+        <% if (locals.permission !== 'Guest') { %>
+            <div class="form-row">
+                <label for="password">
+                    <%= permission %> Password:
+                </label>
+                <input type="password" name="password" id="password">
+            </div>
+        <% } %>
+
+        <p class="deletion-note">Deleting a category will delete all items associated with the category!</p>
+        <button type="submit">Delete Category</button>
+    </form>
+
+    <a href="/" class="home-button">
+        <img src="/icons/home.svg" alt="Go back to the homepage">
+    </a>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/root.css">
+    <title>
+        <% if (locals.item) { %>
+            Edit <%= item %> Item
+        <% } else { %>
+            Edit Item
+        <% } %>
+    </title>
+</head>
+<body>
+    <h1 class="item-heading">
+        Edit Item
+    </h1>
+
+    <%- include("partials/errors.ejs", { errors: locals.errors }) %>
+
+    <%- include("partials/actionNotice.ejs", { target: item, action: 'Editing' }) %>
+
+    <form action=<%= `/category/${categoryId}/editItem/${itemId}` %> method="POST" class="edit-category-form">
+        <div class="form-row">
+            <label for="item">
+                Item Name:
+            </label>
+            <input type="text" name="name" id="item" value="<%= item %>">
+        </div>
+
+        <% if (locals.permission !== 'Guest') { %>
+            <div class="form-row">
+                <label for="password">
+                    <%= permission %> Password:
+                </label>
+                <input type="password" name="password" id="password">
+            </div>
+        <% } %>
+
+        <button type="submit">Edit Item</button>
+    </form>
+
+    <div class="footer-buttons-cont">
+        <a href=<%= `/category/${categoryId}` %> class='back-to-category'>
+            <img src="/icons/back.svg" alt="Go back to the category">
+        </a>
+        <a href="/" class="home-button">
+            <img src="/icons/home.svg" alt="Go back to the homepage">
+        </a>
+    </div>
+</body>
+</html>
