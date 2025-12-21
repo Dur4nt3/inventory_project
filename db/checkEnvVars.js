@@ -7,6 +7,7 @@ export default function checkEnvVars() {
             process.env.DATABASE_PORT === undefined) &&
         process.env.DATABASE_URL === undefined
     ) {
+        console.log('Railway Connection:', process.env.DATABASE_URL);
         console.log('Role:', process.env.ROLE_NAME);
         console.log('Database Password:', process.env.DATABASE_PASSWORD);
         console.log('Database:', process.env.DATABASE);
